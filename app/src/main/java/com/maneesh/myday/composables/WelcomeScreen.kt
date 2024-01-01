@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -54,7 +54,7 @@ fun WelcomeScreen(gotoHome: () -> Unit) {
                     if (quote.isNotEmpty()) {
                         IconButton(onClick = gotoHome) {
                             Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                                imageVector = Icons.Default.ArrowForward,
                                 contentDescription = "Next",
                                 modifier = Modifier.size(120.dp),
                                 tint = Color.White

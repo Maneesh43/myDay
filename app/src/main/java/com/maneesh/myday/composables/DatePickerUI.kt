@@ -5,9 +5,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -31,23 +32,21 @@ fun DatePickerUI(datePickerState: DatePickerState, isShowDatePicker: MutableStat
     Row (verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(bottom = 10.dp)){
 
         val modifier = Modifier.size(20.dp)
-        val selectedEpoch = datePickerState.selectedDateMillis?: LocalDate.now().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
-
         IconButton(onClick = {
-            datePickerState.selectedDateMillis = Util.getPreviousDayEpoch(selectedEpoch)
+            datePickerState.setSelection(Util.getPreviousDayEpoch(datePickerState.selectedDateMillis!!))
         }) {
             Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                imageVector = Icons.Default.KeyboardArrowLeft,
                 contentDescription = "Previous",
                 modifier = modifier
             )
         }
-        Text(text = Util.getFormattedDateFromEpoch(selectedEpoch))
+        Text(text = Util.getFormattedDateFromEpoch(datePickerState.selectedDateMillis!!))
         IconButton(onClick = {
-            datePickerState.selectedDateMillis = Util.getNextDayEpoch(selectedEpoch)
+            datePickerState.setSelection(Util.getNextDayEpoch(datePickerState.selectedDateMillis!!))
         }) {
             Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                imageVector = Icons.Default.KeyboardArrowRight,
                 contentDescription = "Next",
                 modifier=modifier
             )

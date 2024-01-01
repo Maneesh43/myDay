@@ -20,17 +20,14 @@ import java.time.ZoneOffset
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreenContent(datePickerState: DatePickerState,mainViewModel: MainViewModel) {
+fun HomeScreenContent(datePickerState: DatePickerState, mainViewModel: MainViewModel) {
     val isShowDatePicker = remember {
         mutableStateOf(false)
     }
 
-
-
-
     Column(modifier = Modifier.padding(10.dp)) {
         DatePickerUI(datePickerState, isShowDatePicker)
-        UserCard(mainViewModel,datePickerState)
+        UserCard(mainViewModel, datePickerState)
     }
 
 }

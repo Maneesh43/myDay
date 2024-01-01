@@ -6,6 +6,7 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.serializer.JacksonSerializer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
 
 
 object SupaBaseClient {
@@ -17,7 +18,7 @@ object SupaBaseClient {
         defaultSerializer = JacksonSerializer()
     }
 
-    suspend fun getUserActivity(selectedDate:String): UserActivity? {
+    suspend fun getUserActivity(selectedDate: String): UserActivity? {
         return withContext(Dispatchers.IO) {
             try {
                 val userActivity =
@@ -31,5 +32,14 @@ object SupaBaseClient {
                 null
             }
         }
+    }
+
+    suspend fun setUserActivity(person: String): UserActivity {
+        val userActivity =
+            UA(date_created = LocalDate.now().toString(), name = person, tasks_finished = true)
+        val result = supabaseClient.from("userActivity").insert(userActivity) {
+            select()
+        }.decodeSingle<UserActivity>()
+        return result
     }
 }
