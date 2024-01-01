@@ -9,9 +9,13 @@ class MainViewModel : ViewModel() {
 
 
     private val _quote = MutableStateFlow("")
+//    private val _user = MutableStateFlow<List<UserData?>?>(null)
 
     val quote
         get() = _quote.asStateFlow()
+//    val user
+//        get() = _user.asStateFlow()
+
 
 
     suspend fun getQuote() {
@@ -40,13 +44,18 @@ class MainViewModel : ViewModel() {
         )
         val randomChapterNumber = chapterShlokas.keys.random()
         val randomShlokNumber = chapterShlokas[randomChapterNumber]!!.random()
-        val shloka = KtorClient.getSloka(
+        val shloka = KtorClient.getShloka(
             host = "bhagavadgitaapi.in",
             "/slok/$randomChapterNumber/$randomShlokNumber/"
         )
         _quote.emit(shloka!!.siva.et)
+
     }
 
+//    suspend fun getUser(path:String){
+//        val userData = KtorClient.getUser(path)
+//        _user.emit(userData)
+//    }
 
     override fun onCleared() {
         super.onCleared()

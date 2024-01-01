@@ -5,12 +5,12 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.maneesh.myday.HomeScreen
 import com.maneesh.myday.WelcomeScreen
+import com.maneesh.myday.viewmodels.MainViewModel
 
 @Composable
-fun MyDayNavHost(navController:NavHostController){
+fun MyDayNavHost(navController:NavHostController,mainViewModel: MainViewModel){
     fun NavHostController.navigateSingleTopTo(route:String){
         navController.navigate(route){
             launchSingleTop = true
@@ -27,7 +27,7 @@ fun MyDayNavHost(navController:NavHostController){
             WelcomeScreen(gotoHome = {navController.navigateSingleTopTo(HomeScreen.route)})
         }
         composable(route=HomeScreen.route){
-            HomeScreen()
+            HomeScreen(mainViewModel,goBack = {navController.navigateUp()})
         }
     }
 }

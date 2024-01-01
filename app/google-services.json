@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881096206927",
+    "project_id": "myday-c6d22",
+    "storage_bucket": "myday-c6d22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881096206927:android:9d36d66fae0ea1ec24583a",
+        "android_client_info": {
+          "package_name": "com.maneesh.myday"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR3uqWvebvhX9avwUAhgh1AZkOubBuWaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

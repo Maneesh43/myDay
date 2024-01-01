@@ -1,9 +1,64 @@
 package com.maneesh.myday.composables
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 
+import android.content.res.Configuration
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import com.maneesh.myday.ui.theme.MyDayTheme
+import com.maneesh.myday.viewmodels.MainViewModel
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(){
-    Text(text = "screen 2")
+fun HomeScreen(mainViewModel: MainViewModel, goBack: () -> Unit) {
+    val datePickerState =
+        rememberDatePickerState()
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text(text = "Jetpack compose") }, navigationIcon = {
+                IconButton(
+                    onClick = goBack
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back"
+                    )
+                }
+            })
+        }, modifier = Modifier
+            .fillMaxWidth()
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+        ) {
+
+            HomeScreenContent(datePickerState,mainViewModel)
+        }
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
+@Composable
+fun DefaultView() {
+    MyDayTheme {
+        Scaffold {
+            Column(modifier = Modifier.padding(it)) {
+
+            }
+        }
+    }
 }
